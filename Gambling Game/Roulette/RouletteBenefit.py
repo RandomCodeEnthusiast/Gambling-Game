@@ -21,4 +21,4 @@ def Roulette_Benefit(BetNumber,Roulette,Reward,BetColor,BetAmount,BetType,Player
         
     from InventoryManagement.MoneyManagement.money import gain
 
-    return gain(Reward,BetAmount,Win,Player) 
+    gain(Reward,BetAmount,Win,Player) 
