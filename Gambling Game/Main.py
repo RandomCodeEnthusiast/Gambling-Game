@@ -28,8 +28,7 @@ while True :
             if NoCount>1 :
                 print('Fine... You get to leave...') ; sleep(5)
                 print('FOR NOW...') ; sleep(5)
-                print('The Gambling addiction always catches up...') ; sleep (5)
-                print('All roads lead to Rome...........') ; sleep (1)
+                print('The Gambling addiction always catches up...') ; sleep (2)
                 break
 
         else :
