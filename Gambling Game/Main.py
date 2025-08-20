@@ -23,13 +23,12 @@ while True :
             pass
         elif "don't" in GamePlayed or 'no' in GamePlayed :
             sleep(3) ; print('Do you think you have a choice ?')
-            NoCount+=1 ; sleep(5)
+            NoCount+=1 ; sleep(3)
             pass
             if NoCount>1 :
                 print('Fine... You get to leave...') ; sleep(5)
                 print('FOR NOW...') ; sleep(5)
-                print('The Gambling addiction always catches up...') ; sleep (5)
-                print('All roads lead to Rome...........') ; sleep (1)
+                print('The Gambling addiction always catches up...') ; sleep (2)
                 break
 
         else :
