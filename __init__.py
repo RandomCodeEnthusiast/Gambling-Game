@@ -5,8 +5,11 @@ from Roulette.RouletteGame import Roulette_Game
 
 app = Flask('gambling')
 
-@app.route('/home')
+@app.route('/')
+def MainPage():
+    return Flask.redirect(self=Flask,location='/home',code=302)
 
+@app.route('/home')
 def home():
     return render_template('home.html')
 
