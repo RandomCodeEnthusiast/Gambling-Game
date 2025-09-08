@@ -31,8 +31,8 @@ while True :
             
 
         elif "roulette" in Action :
-            from Roulette.RouletteSetup import Roulette_Setup
-            Roulette_Setup(Player)
+            from Roulette.RouletteGame import Roulette_Game
+            Roulette_Game(Player)
 
         elif 'daily' in Action :
             Daily(Player)
