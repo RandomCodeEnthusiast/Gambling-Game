@@ -1,0 +1,18 @@
+#The Simulation Part of the Roulette
+
+def Roulette_Sim(BetType,BetNumber,BetColor,BetAmount,Reward,Player) :
+
+    '''Simulates a game of Roulette based on the inputs from Roulette_Setup (basically picks a random number to land on).
+    Calls Roulette_Benefit function at the end'''
+
+    #Imports
+    from random import choice
+    from Roulette.RouletteBenefit import Roulette_Benefit
+
+    #Choosing a random number
+    RouletteNumbers={0 : "green" ,1 : "red",2 : "black", 3 : "red", 4 : "black", 5 : "red", 6 : "black", 7 : "red", 8 : "black", 9 : "red", 10 : "black", 11 : "black", 12 : "red", 13 : "black", 14 : "red", 15 : "black", 16 : "red", 17 : "black", 18 : "red", 19 : "red", 20 : "black", 21 : "red", 22 : "black", 23 : "red", 24 : "black", 25 : "red", 26 : "black", 27 : "red", 28 : "black", 29 : "black", 30 : "red", 31 : "black", 32 : "red", 33 : "black", 34 : "red", 35 : "black", 36 : "red"}
+    Roulette=choice(list(RouletteNumbers.items()))
+
+    #Announcing the result to the player, then calculates the Reward with a function
+    print("The ball landed on a  : ",Roulette)
+    Roulette_Benefit(BetNumber,Roulette,Reward,BetColor,BetAmount,BetType,Player)

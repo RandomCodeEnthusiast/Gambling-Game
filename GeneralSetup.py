@@ -2,7 +2,7 @@ def BetAmountSetup(Player : int) :
 
     '''Asks one Player how much they want to bet (with an all in functonnality)'''
 
-    from InventoryManagement.MoneyManagement.money import Money
+    from Data.InventoryManagement.MoneyManagement.money import Money
     Total=Money(Player)
 
     #Asking the Player how much they want to bet
