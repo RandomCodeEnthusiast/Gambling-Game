@@ -3,38 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <title>Gambling-Game | Roulette</title>
-  <style>
-    .btn {
-      display: inline-block;
-      padding: 10px 20px;
-      background-color: #413eea;
-      color: white;
-      text-decoration: none;
-      border-radius: 8px;
-      font-family: Arial, sans-serif;
-    }
-    .btn:hover {
-      background-color: #3b399f;
-    }
-    .content {
-      max-width: 960px;
-      margin: 10em auto 2em;
-      color : whitesmoke;
-    }
-  </style>
+  <link rel="stylesheet" href="static\CSS\style.css">
 
   <div class="topnav">
-    <a class="active" href="home">Home</a>
-    <a href="Balance">Balance</a>
-    <a href="Roulette">Roulette</a>
-    <a href="Others">Others</a>
+    <a class="topnavbtn" href="home">Home</a>
+    <a class="topnavbtn" href="Balance">Balance</a>
+    <a class="topnavbtn" href="Roulette">Roulette</a>
+    <a class="topnavbtn" href="Others">Others</a>
   </div>
 
 </head>
-<body style="background-color:rgb(13, 16, 68);">
+<body>
   <div class="content">
     <h1>Roulette Result :</h1>
-    <p class = 'roulette' margin: inherit+1em 2em 2em;>{{ roulette }}</p>
+    {% if %}
+    <div class= "rouletteresult">
+      <p>Number : {{ Number }}</p>
+      <p>Color : {{ Color }}</p>
+    </div>  
     <p>GoodLuck</p>
   </div>
 </body>

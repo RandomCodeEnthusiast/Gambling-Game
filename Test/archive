@@ -1,0 +1,76 @@
+Certainly! To account for the dealer's aces, you should treat the dealer as an extra "player" in your ace-tracking system.  
+Here's how to do it:
+
+---
+
+## 1. **Initialize Aces.txt for Dealer + Players**
+
+When you set up `Aces.txt`, add one extra slot for the dealer (e.g., first or last line):
+
+````python
+# ...existing code...
+# Dealer is at index 0, players start at index 1
+total_players = len(PlayerCount)
+FileWriter(projectpath() + r'\BlackJack\Aces.txt', '\n'.join(['0'] * (total_players + 1)))
+# ...existing code...
+````
+
+---
+
+## 2. **Assign DealerPosition Consistently**
+
+Set `DealerPosition = 0` and players as `PlayerOrder + 1` everywhere you call ace-related functions:
+
+````python
+# ...existing code...
+DealerPosition = 0
+DealerScore = BlackJackSetup(Dealer, DealerPosition)
+# ...existing code...
+for PlayerOrder, PlayerNumber in enumerate(PlayerCount):
+    PlayerScore = BlackJackSetup(Player, PlayerOrder + 1)
+    PlayerScores.append(PlayerScore)
+# ...existing code...
+````
+
+---
+
+## 3. **Update ScoreCalc, SaveAces, CheckAces to Use New Indexing**
+
+No changes needed in logic, just ensure you pass the correct index (dealer: 0, players: 1+).
+
+---
+
+## 4. **Summary of Indexing**
+
+- `Aces.txt` line 0: Dealer's ace count
+- `Aces.txt` line 1: Player 1's ace count
+- `Aces.txt` line 2: Player 2's ace count
+- etc.
+
+---
+
+## 5. **Example: BlackJackSetup and Draw Usage**
+
+````python
+# ...existing code...
+DealerPosition = 0
+DealerScore = BlackJackSetup(Dealer, DealerPosition)
+# ...existing code...
+for PlayerOrder, PlayerNumber in enumerate(PlayerCount):
+    PlayerScore = BlackJackSetup(Player, PlayerOrder + 1)
+    PlayerScores.append(PlayerScore)
+# ...existing code...
+````
+
+---
+
+## 6. **Why This Works**
+
+- The dealer is always tracked at index 0.
+- All ace-related functions (`ScoreCalc`, `SaveAces`, `CheckAces`) work for both dealer and players.
+- No logic changes needed elsewhere—just pass the correct index.
+
+---
+
+**If you want the dealer at the end instead of the start, just adjust the indexing accordingly.**  
+Let me know if you want a full code block for all changes!

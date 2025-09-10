@@ -2,10 +2,10 @@
 
 from time import sleep
 
-from InventoryManagement.MoneyManagement.money import Money
-from InventoryManagement.StoneManagement.Stone import StoneBuy,StoneCheck
-from Gacha.GachaSystem import Gacha
-from InventoryManagement.MoneyManagement.Daily import Daily
+from Data.InventoryManagement.MoneyManagement.money import Money
+from Data.InventoryManagement.StoneManagement.Stone import StoneBuy,StoneCheck
+from Games.Gacha.GachaSystem import Gacha
+from Data.InventoryManagement.MoneyManagement.Daily import Daily
 
 
 while True :
@@ -24,14 +24,14 @@ while True :
         sleep(1)
 
         if "blackjack" in Action or "black jack" in Action :
-            from BlackJack.BlackJackGame import BlackJackGame
+            from Games.BlackJack.BlackJackGame import BlackJackGame
             
             print('Dealer Stands on 17') ; sleep(1)
             BlackJackGame()
             
 
         elif "roulette" in Action :
-            from Roulette.RouletteGame import Roulette_Game
+            from Games.Roulette.RouletteGame import Roulette_Game
             Roulette_Game(Player)
 
         elif 'daily' in Action :
