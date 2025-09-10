@@ -17,7 +17,7 @@ def Roulette_Game(Player : int) -> tuple :
 
         #Setting default values for bet color and number
         BetColor="None"
-        BetNumber=[69]
+        BetNumber=[42] #Arbitrary number that won't appear on the roulette
 
         #Determining what the bet is and asking further questions if necessary
         if BetType=="color" : 
@@ -89,4 +89,11 @@ def Roulette_Game(Player : int) -> tuple :
     else : 
         Roulette : tuple = ('error','error')
 
-    return Roulette 
+    return {
+            'Result' : Roulette,
+            'Win' : Win,
+            'Reward' : Reward,
+        }
+
+    
+        

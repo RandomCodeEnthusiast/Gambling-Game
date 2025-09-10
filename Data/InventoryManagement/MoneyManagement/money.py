@@ -1,10 +1,10 @@
 #The money management system of the Gambling Game
 #NOTE : NEEDS COMMENTS
 
-from InventoryManagement.BackUpSystem.BackUp import FileBackUp
+from Data.InventoryManagement.BackUpSystem.BackUp import FileBackUp
 from config import projectpath
 
-savepath : str = projectpath() + r'\InventoryManagement\MoneyManagement'
+savepath : str = projectpath() + r'\Data\InventoryManagement\MoneyManagement'
 moneysavepath : str = savepath + r'\moneysave.txt'
 moneysavename : str ='moneysave.txt'
 

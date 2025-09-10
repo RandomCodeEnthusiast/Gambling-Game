@@ -1,12 +1,12 @@
 
 #Imports
 from config import projectpath
-from InventoryManagement.BackUpSystem.BackUp import FileBackUp,FileOpener
-from InventoryManagement.MoneyManagement.money import Money,MoneyModifier
+from Data.InventoryManagement.BackUpSystem.BackUp import FileBackUp,FileOpener
+from Data.InventoryManagement.MoneyManagement.money import Money,MoneyModifier
 
 #Seting up paths for opening files
 projectfolder = projectpath()
-savepath : str = projectfolder + r'\InventoryManagement\MoneyManagement'
+savepath : str = projectfolder + r'\Data\InventoryManagement\MoneyManagement'
 dailysavepath : str = savepath + r'\Daily.txt'
 dailysavename : str = 'Daily.txt'
 

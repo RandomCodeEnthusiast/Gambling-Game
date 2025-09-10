@@ -2,14 +2,14 @@
 from config import projectpath
 
 #Setting up the paths to open files
-stonecountpath = projectpath() + r'\InventoryManagement\StoneManagement\Stonesave.txt'
+stonecountpath = projectpath() + r'\Data\InventoryManagement\StoneManagement\Stonesave.txt'
 stonesavename = 'Stonesave.txt'
 
 def StoneBuy(BuyAmount :int, Player : int) -> None :
     
     '''Buys a desired amount of stones for a certain player if they have sufficient funds '''
     
-    from InventoryManagement.MoneyManagement.money import MoneyModifier,Money
+    from Data.InventoryManagement.MoneyManagement.money import MoneyModifier,Money
 
     #Defining the Funds of the Player
     Funds = Money(Player)

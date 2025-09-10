@@ -8,11 +8,11 @@ def FileBackUp(FilePath : str, FileName : str ) :
     Note : This function is only made for .txt files, it will fail otherwise
     '''
     #FileName example : File.txt
-    #FilePath example : C:\Users\Username\Folder\PROJECTFOLDERNAME\Gambling Game\InventoryManagement\BackUpSystem\moneysaveBackup.txt
+    #FilePath example : C:\Users\Username\Folder\PROJECTFOLDERNAME\Gambling Game\Data\InventoryManagement\BackUpSystem\moneysaveBackup.txt
 
     from config import projectpath
     
-    BackUpFolder = projectpath() + r'\InventoryManagement\BackUpSystem\ '[:-1]
+    BackUpFolder = projectpath() + r'\Data\InventoryManagement\BackUpSystem\ '[:-1]
     
     with open (FilePath,'r') as r :
         FileBackUpPath :str = BackUpFolder + FileName[:-4] + "Backup.txt"

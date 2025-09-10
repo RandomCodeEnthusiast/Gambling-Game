@@ -1,0 +1,54 @@
+.topnav {
+      background-color: rgb(3, 22, 85);
+      padding: 20px;
+      text-align : center;
+      display: flex;
+      justify-content: space-around;
+    }
+    .topnavbtn {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #053ea8;
+      color: rgb(255, 255, 255);
+      text-decoration: none;
+      border-radius: 8px;
+      font-family: Arial, sans-serif;  
+    }
+    .topnavbtn:hover {
+        background-color: #164caf;
+    }
+    .rouletteresult {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 15;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #413eea;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-family: Arial, sans-serif;
+    }
+    .btn:hover {
+      background-color: #3b399f;
+    }
+    .content {
+      max-width: 50%;
+      margin-top: 10em;
+      margin-left: 25%;
+      color : whitesmoke
+    }
+    html {
+        height: 100%;
+        width: 100%;
+    }
+    body {
+        margin: 0; 
+        background-image: linear-gradient(315deg, #000 0%,#000B18 35%, #00172D 65%, #00264D 90%);
+        background-repeat: no-repeat;
+    }
+
+    
+    

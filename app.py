@@ -17,7 +17,7 @@ def Web_Roulette() :
     ...
 @app.route('/Roulette')
 def roulette():
-    result : tuple = Roulette_Game(Player=1)
+    result : tuple = Roulette_Game(Player=1)['Result']
     return render_template('roulette.html',Number = result[0], Color = result[1])
 
 @app.route('/Balance')
