@@ -3,6 +3,12 @@ document.addEventListener('DOMContentLoaded', function() {
     loadDaily_timeremaining();
 })
 
+window.addEventListener('beforeunload', () => {
+  removeEventListener('DOMContentLoaded')
+  removeEventListener('beforeunload')
+});
+
+
 async function apiCall(endpoint, method = 'GET', data = null) {
     try {
         const options = {

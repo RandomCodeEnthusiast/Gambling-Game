@@ -3,6 +3,11 @@ document.addEventListener('DOMContentLoaded', function() {
     loadStoneCount();
 });
 
+window.addEventListener('beforeunload', () => {
+  removeEventListener('DOMContentLoaded')
+  removeEventListener('beforeunload')
+});
+
 async function apiCall(endpoint, method = 'GET', data = null) {
     try {
         const options = {
