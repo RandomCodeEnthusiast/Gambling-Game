@@ -4,20 +4,26 @@
   <meta charset="UTF-8">
   <title>Gambling-Game | Balance</title>
   <link rel="stylesheet" href="static\CSS\style.css">
+</head>
+<body>
 
   <div class="topnav">
     <a class="topnavbtn" href="home">Home</a>
     <a class="topnavbtn" href="Balance">Balance</a>
     <a class="topnavbtn" href="Roulette">Roulette</a>
     <a class="topnavbtn" href="Others">Others</a>
+    <a class="topnavbtn" href="Daily">Daily</a>
   </div>
 
-</head>
-<body>
+  <script src = "/static/JavaScript/Inventory.js" ></script>
+
   <div class="content">
     <h1>Player Balance :</h1>
-    <p class = 'balance' margin: inherit+1em 2em 2em;>{{ balance }} Chips</p>
-    <p>You are poor</p>
+    <div id="balance">Loading...</div>
+    <h1>Player Stone Count :</h1>
+    <div id="stonecount">Loading...</div>
+    <p></p>
+    <button class = bet-button onclick="BuyStone()">Buy Stones</button>
   </div>
 </body>
 </html>

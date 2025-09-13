@@ -5,7 +5,7 @@ from config import projectpath
 stonecountpath = projectpath() + r'\Data\InventoryManagement\StoneManagement\Stonesave.txt'
 stonesavename = 'Stonesave.txt'
 
-def StoneBuy(BuyAmount :int, Player : int) -> None :
+def StoneBuy(BuyAmount :int = 1, Player : int = 1) -> bool :
     
     '''Buys a desired amount of stones for a certain player if they have sufficient funds '''
     
@@ -18,19 +18,25 @@ def StoneBuy(BuyAmount :int, Player : int) -> None :
     BuyCost = 100
     Spending = BuyAmount*BuyCost
 
-    #Checks if the Player has enoguh to buy the amount of stones they want
+    #Checks if the Player has enouh to buy the amount of stones they want
     if Funds >= Spending :
         NewFunds = Funds - Spending
         StoneModifier(BuyAmount,Player,Spend=False)
         MoneyModifier(Player,Funds,NewFunds)
         print(f'You now have {NewFunds} in Gambling Funds')
 
+        successful = True
+        
     else :
-        print('Insufficient Funds...')
+        successful = False
+    
+    print(successful)
+    return successful
 
-def StoneModifier(ModifyAmount :int,Player : int,Spend :bool) -> None :
+def StoneModifier(ModifyAmount :int, Player: int = 1, Spend :bool = False) -> None :
 
-    '''Spends or Adds the desired amount of stones for the desired player'''
+    '''Spends or Adds the desired amount of stones for the desired player
+    Set to Add buy default'''
 
     #Checks how many Stones the Player HAD
     with open (stonecountpath, 'r') as f :
@@ -63,7 +69,7 @@ def StoneModifier(ModifyAmount :int,Player : int,Spend :bool) -> None :
                 SaveOverwrite=Stonesave[line]
             f.write(SaveOverwrite)
 
-def StoneCheck(Player : int) -> int : 
+def StoneCheck(Player : int = 1) -> int : 
 
     '''Checks the StoneCount of the desired player'''
 

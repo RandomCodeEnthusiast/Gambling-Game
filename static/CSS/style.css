@@ -34,6 +34,39 @@
     .btn:hover {
       background-color: #3b399f;
     }
+
+    .bet-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 15px 0;
+        }
+
+    .bet-button {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #5b59d6;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-family: Arial, sans-serif;
+      border : none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .bet-button:hover {
+      background: #0a33eb;
+      transform: scale(1.05);
+    }
+    /*
+    NOT WORKING YET : ADD JavaScript to make it work
+    .bet-button:selected {       
+      background: #86e7ff;
+      color: #333;
+    }
+    */
+
     .content {
       max-width: 50%;
       margin-top: 10em;

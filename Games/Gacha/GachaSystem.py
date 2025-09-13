@@ -20,7 +20,7 @@ def Gacha(Player : int,WishCount : int) -> None :
 
     #Setup of different variables for files
     PlayerFolder : str = r'\Players\Player' + str(Player)
-    txtpath : str = projectpath() + r'\WishingSim'
+    txtpath : str = projectpath() + r'\Games\Gacha'
     PityPath : str = txtpath + PlayerFolder + r'\Pity.txt'
     PityFileName : str = 'Pity.txt'
 
@@ -111,7 +111,8 @@ def GachaLogs(PickedLoot,PlayerFolder,Rarity) :
     #Setup : imports and path for opening files
     from Data.InventoryManagement.BackUpSystem.BackUp import FileBackUp,FileElementReplacer,FileAppender,FileOpener
     from config import projectpath
-    txtpath = projectpath() + r'\WishingSim' + PlayerFolder
+    txtpath = projectpath() + r'\Games\Gacha' + PlayerFolder
+    print(txtpath)
 
     #Adds the PickedLoot to GachaLogs.txt, along with it's Rarity
     FileAppender(FilePath = txtpath + r"\GachaLogs.txt",Appending = f'{Rarity} : {str(PickedLoot)}')
