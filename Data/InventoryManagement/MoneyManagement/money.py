@@ -8,7 +8,7 @@ savepath : str = projectpath() + r'\Data\InventoryManagement\MoneyManagement'
 moneysavepath : str = savepath + r'\moneysave.txt'
 moneysavename : str ='moneysave.txt'
 
-def gain(Reward,BetAmount : int | float,GameWin : bool,Player : int) -> None :
+def gain(Reward : float,BetAmount : float,GameWin : bool,Player : int) -> None :
 
     '''Updates a Player's Balance after a game.         
     Note : Doesn't show the new balance'''
@@ -23,7 +23,7 @@ def gain(Reward,BetAmount : int | float,GameWin : bool,Player : int) -> None :
     MoneyModifier(Player, OldMoneyCounter, MoneyCounter)
     
 
-def Money(Player : int) -> int | float :
+def Money(Player : int) -> float :
 
     '''Returns how much money the desired player has'''
 
@@ -34,7 +34,7 @@ def Money(Player : int) -> int | float :
 
         return MoneyCounter
     
-def MoneyModifier(Player : int, OldMoneyCounter : int | float, MoneyCounter : int | float) -> None :
+def MoneyModifier(Player : int, OldMoneyCounter : float, MoneyCounter : float) -> None :
     
     '''A function that modifies the MoneyCounter of the desired player'''
 
@@ -46,7 +46,7 @@ def MoneyModifier(Player : int, OldMoneyCounter : int | float, MoneyCounter : in
     with open(moneysavepath, 'w' ) as save:
         for line in range (len(NewSave)) :
             if line==Player-1 :
-                SaveOverwrite=NewSave[line].replace(str(OldMoneyCounter), str(MoneyCounter))
+                SaveOverwrite = f"{MoneyCounter}\n"
             else :
                 SaveOverwrite=NewSave[line]
             save.write(SaveOverwrite)

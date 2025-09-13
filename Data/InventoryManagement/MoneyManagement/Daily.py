@@ -10,9 +10,27 @@ savepath : str = projectfolder + r'\Data\InventoryManagement\MoneyManagement'
 dailysavepath : str = savepath + r'\Daily.txt'
 dailysavename : str = 'Daily.txt'
 
-def Daily(Player) :
+def Daily(Player : int = 1) :
 
     '''A Daily loggin system, rewards the Player with a fix amount + a Bonus based on their characters'''
+
+    TimeCheckResult = DailyTimeCheck(Player, DailyRequest = True)
+    successful = TimeCheckResult['successful']
+    MissingTime = TimeCheckResult['MissingTime']
+
+    #Adds Money to the Player's Balance if their loggin meets the requirements 
+    # (1 day after the last succesful one)
+    if successful :
+
+        Bonus = DailyBonus(Player) 
+        OldFunds = Money(Player)
+        NewFunds = OldFunds + 1000 + Bonus
+        MoneyModifier(Player,OldFunds,NewFunds)
+    
+    return {'successful' : successful}
+
+def DailyTimeCheck(Player : int = 1, DailyRequest : bool = False) : 
+    #Daily request signifies that the function is called by the Daily function and not the API
 
     from datetime import datetime,timedelta
 
@@ -36,7 +54,7 @@ def Daily(Player) :
     except RuntimeError :
 
         OldDailytime : datetime = datetime(year=2025,month=8,day=22,hour=21)
-    
+        
     #Getting the Current Time, and creating the RequiredTime variable : one day after last loggin
     Time : datetime = datetime.now()
     RequiredTime : datetime = OldDailytime + timedelta(days = 1)
@@ -46,40 +64,41 @@ def Daily(Player) :
     #if the time meets the requirements the OldDailyTime is replaced by the Current Time 
     #NOTE : CHANGE THE FILE OPENING WITH THE Function designed for it
     if Time >= RequiredTime : 
-        with open(dailysavepath, 'w') as f :
-            for saveline in range(lines) :
 
-                if saveline == Player-1 :
+        if DailyRequest :
 
-                    if OldDailytime == datetime(year=2025,month=8,day=22,hour=21) :
-                        ToReplace = 0
+            with open(dailysavepath, 'w') as f :
+                for saveline in range(lines) :
 
-                    else : 
-                        ToReplace = OldDailytime
-                        print(ToReplace)
+                    if saveline == Player-1 :
 
-                    NewSave = dailytimesave[saveline].replace(str(ToReplace), str(Time))
-                
-                else :
-                    NewSave = dailytimesave[saveline]
+                        if OldDailytime == datetime(year=2025,month=8,day=22,hour=21) :
+                            ToReplace = 0
 
-                f.write(NewSave)
+                        else : 
+                            ToReplace = OldDailytime
+                            print(ToReplace)
 
+                        NewSave = dailytimesave[saveline].replace(str(ToReplace), str(Time))
+                    
+                    else :
+                        NewSave = dailytimesave[saveline]
+
+                    f.write(NewSave)
+
+        MissingTime = 0
         successful = True
 
     #If the Time doesn't meet the requirements, the user is informed by how much time they logged in too early 
     else :
-        print(f'You checked in too early by {RequiredTime-Time}')
+        MissingTime = RequiredTime-Time
+        print(f'You checked in too early by {MissingTime}')
         successful = False
 
-    #Adds Money to the Player's Balance if their loggin meets the requirements 
-    # (1 day after the last succesful one)
-    if successful :
-
-        Bonus = DailyBonus(Player) 
-        OldFunds = Money(Player)
-        NewFunds = OldFunds + 1000 + Bonus
-        MoneyModifier(Player,OldFunds,NewFunds)
+    return {
+        'successful' : successful,
+        'MissingTime' : MissingTime
+        }
 
 def DailyBonus(Player : int) -> int :
 
@@ -88,7 +107,7 @@ def DailyBonus(Player : int) -> int :
 
     #Setting up paths to open files
     PlayerFolder : str = r'\Players\Player' + str(Player)
-    path1 = projectfolder + r'\WishingSim' + PlayerFolder
+    path1 = projectfolder + r'\Games\Gacha' + PlayerFolder
     
     #Setting up the data to calculate the money bonus for 4* characters
     EpicList = FileOpener(path1 + r'\4StarCharacters.txt')

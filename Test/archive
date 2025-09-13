@@ -74,3 +74,9 @@ for PlayerOrder, PlayerNumber in enumerate(PlayerCount):
 
 **If you want the dealer at the end instead of the start, just adjust the indexing accordingly.**  
 Let me know if you want a full code block for all changes!
+
+
+
+
+
+margin: inherit+1em 2em 2em;
