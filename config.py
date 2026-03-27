@@ -1,4 +1,4 @@
-folderP = r'C:\Folder important\Coding projects\Python\Gambling-Game'
+folderP = r''
 # An example path would be :
 # C:\Users\Username\...\Gambling Game
 def projectpath() :
