@@ -11,41 +11,44 @@
   <div class="topnav">
     <a class="topnavbtn" href="home">Home</a>
     <a class="topnavbtn" href="Balance">Balance</a>
-    <a class="topnavbtn" href="Roulette">Roulette</a>
-    <a class="topnavbtn" href="Others">Others</a>
     <a class="topnavbtn" href="Daily">Daily</a>
+    <a class="topnavbtn" href="Others">Others</a>
   </div>
 
-  <script src = "/static/JavaScript/mainJS.js" ></script>
+  <script src = "/static/JavaScript/Roulette.js" ></script>
 
   <div class="content">
     <h1>Roulette :</h1>
-    <a href="Roulette_setup" class="btn">Play</a>
-    {% if Setup %}
+    <div id="PlayButton"><a class="btn" onclick="loadUI(true,false)">Play</a></div>
+    <div id="BettingUI">
       <P></P>
       <label>Bet Amount : </label>
-      <input type="number" id="roulette-bet-amount" class="bet-input" placeholder="Enter bet amount" min="1">
+      <input type="number" id="roulette-bet-amount" class="bet-input" placeholder="Enter bet amount" min="1"> 
       <p>Bet type : </p>
-      <div class = bet-buttons>
-        <button class = bet-button onclick="selectBetType('color','red')">Red</button>
-        <button class = bet-button onclick="selectBetType('color','black')">Black</button>
-        <button class = bet-button onclick="selectBetType('number')">Number</button>
+      <div class = bet-buttons id="bet-buttons">
+        <button class = bet-button onclick="selectBetType('color','red')">Red</button>&nbsp;&nbsp;&nbsp;
+        <button class = bet-button onclick="selectBetType('color','black')">Black</button>&nbsp;&nbsp;&nbsp;
+        <button class = bet-button onclick="selectBetType('number'),loadUI(true,false,'number')">Number</button>&nbsp;&nbsp;&nbsp;
+        <button class = bet-button onclick="selectBetType('even','none')">Even</button>&nbsp;&nbsp;&nbsp;
+        <button class = bet-button onclick="selectBetType('odd','none')">Odd</button>&nbsp;&nbsp;&nbsp;
+        <button class = bet-button onclick="selectBetType('low','none')">Low</button>&nbsp;&nbsp;&nbsp;
+        <button class = bet-button onclick="selectBetType('high','none')">High</button>&nbsp;&nbsp;&nbsp;
       </div>
-    {% elif Play %}
+      <div id="number-guess">
+        <label>Number Guess : </label>
+        <input type="number" id="roulette-bet-number" class="bet-input" placeholder="Enter bet number" min="0" max="34"> <!-- ISSUE WITH THE INPUT FIELD SIZE -->
+        <p></p>
+        <button class = bet-button onclick="loadUI(true)" id="return-button">Change Bet</button>
+      </div>
       <p></p>
-      <div class= "rouletteresult">
-        <p>Results : </p>
-        <p>Number : {{ Number }}</p>
-        <p>Color : {{ Color }}</p>
-        {% if GameWon %}
-          <p>You won {{ GameReward }} chips !</p>
-        {% else %}
-          <p>You lost {{ GameReward }} chips !</p>
-        {% endif %}
+      <p>Good Luck</p>
+      <button class = bet-button onclick="Roulette()">Spin the Wheel !</button>
+    </div>
+      <p></p> 
+      <div class= "rouletteresult" id="roulette-result">
+        <p id="result-color&number"></p>
+        <p id="win-message"></p>
       </div>
-    {% else %}  
-      <p>GoodLuck</p>
-    {% endif %}
   </div>
 </body>
 </html>

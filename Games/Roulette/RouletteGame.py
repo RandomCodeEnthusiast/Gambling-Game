@@ -1,58 +1,75 @@
-def Roulette_Game(Player : int) -> tuple :
+def Roulette_Game(Player : int,API_Request = True, BetType = 'None',Precision = "None",BetAmount = "None") -> tuple :
 
     #Imports
     from random import choice
     from GeneralSetup import BetAmountSetup
     from GeneralSetup import BetTypeSetup
 
+    successful=True #To manage if the request comes from GUI
     #SETUP : user input 
+    if not API_Request :
+        #Done in a loop to account for input errors
+        for i in range (3) : 
 
-    #Done in a loop to account for input errors
-    for i in range (3) : 
+            #Asking the type (color,number,even,high,etc...), and the amount of the bet
+            BetAmount=BetAmountSetup(Player)
+            BetType=BetTypeSetup()
+            successful=True
 
-        #Asking the type (color,number,even,high,etc...), and the amount of the bet
-        BetAmount=BetAmountSetup(Player)
-        BetType=BetTypeSetup()
-        successful=True
+            #Setting default values for bet color and number
+            BetColor="None"
+            BetNumber=[42] #Arbitrary number that won't appear on the roulette
 
+            #Determining what the bet is and asking further questions if necessary
+            if BetType=="color" : 
+                BetColor=input("Bet Color : ").lower()
+                Multiplier=2
+
+            elif "number" in BetType: 
+                print("Please input numbers beetween 0 and 36, otherwise you will not gain anything")
+                BetNumber=[int(x) for x in input("Bet Number(s) : ").split()]
+                Multiplier=36/len(BetNumber) 
+
+            #NOTE : This isn't the the Split or Square BetType because numbers aren't adjacent : those aren't implemented
+
+            elif "even" in BetType or "odd" in BetType or "low" in BetType or "high" in BetType:
+                Multiplier=2 
+
+            elif "practice" in BetType : 
+                BetType="None"
+                print("A practice game of roulette will play...")
+
+            else :
+                print("An Error occured please retry...")
+                successful=False
+
+            #if the Setup was successful a Game of Roulette starts
+            if successful :
+                print("Bet is set to",BetType)
+                print("Playing a Game of Roulette")
+                Reward=BetAmount*Multiplier
+                break
+
+        #If the Setup Attempt was uncessful 3 times in a row, an error message pops up     
+        else :
+            print("The Game couldn't load 3 times in a row, please restart the program...")
+    else :
         #Setting default values for bet color and number
         BetColor="None"
         BetNumber=[42] #Arbitrary number that won't appear on the roulette
-
-        #Determining what the bet is and asking further questions if necessary
-        if BetType=="color" : 
-            BetColor=input("Bet Color : ").lower()
+        
+        print(BetType)
+        if BetType == 'number' :
+            BetNumber = int(Precision)
+            Multiplier = 36 #NO SUPPORT FOR MULTIPLE NUMBERS FIX ASAP
+        elif BetType == 'color' :
+            BetColor = Precision
             Multiplier=2
-
-        elif "number" in BetType: 
-            print("Please input numbers beetween 0 and 36, otherwise you will not gain anything")
-            BetNumber=[int(x) for x in input("Bet Number(s) : ").split()]
-            Multiplier=36/len(BetNumber) 
-
-        #NOTE : This isn't the the Split or Square BetType because numbers aren't adjacent : those aren't implemented
-
-        elif "even" in BetType or "odd" in BetType or "low" in BetType or "high" in BetType:
-            Multiplier=2 
-
-        elif "practice" in BetType : 
-            BetType="None"
-            print("A practice game of roulette will play...")
-
         else :
-            print("An Error occured please retry...")
-            successful=False
-
-        #if the Setup was successful a Game of Roulette starts
-        if successful :
-            print("Bet is set to",BetType)
-            print("Playing a Game of Roulette")
-            Reward=BetAmount*Multiplier
-            break
-
-    #If the Setup Attempt was uncessful 3 times in a row, an error message pops up     
-    else :
-        print("The Game couldn't load 3 times in a row, please restart the program...")
-
+            Multiplier=2
+        Reward=BetAmount*Multiplier
+             
+        
 
 
     if successful :
