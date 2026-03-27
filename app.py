@@ -1,4 +1,4 @@
-from flask import Flask,render_template
+from flask import Flask,render_template,jsonify,request
 
 from Data.InventoryManagement.MoneyManagement.money import Money
 from Data.InventoryManagement.MoneyManagement.Daily import Daily,DailyTimeCheck
@@ -71,13 +71,18 @@ def roulette_setup():
     balance = Money(Player=1)
     return render_template('roulette.html',Play = False, Setup = True, Funds = balance)
 
-@app.route('/Roulette_play')
+@app.route('/Roulette_play',methods=['GET','POST'])
 def roulette_play():
-    RouletteGame_Data : dict = Roulette_Game(Player=1)
-    result : tuple = RouletteGame_Data['Result']
-    WinStatus = RouletteGame_Data['Win']
-    Reward = RouletteGame_Data['Reward']
-    return render_template('roulette.html',Play = True, Number = result[0], Color = result[1],GameWon = WinStatus,GameReward = Reward)
+    BetInfo = request.get_json(force=True)
+    BetType = BetInfo['BetType']
+    RouletteGame_Data : dict = Roulette_Game(
+        Player=1,
+        API_Request = True,
+        BetType = BetType[0],
+        Precision = BetType[1],
+        BetAmount = int(BetInfo['BetAmount'])
+    )
+    return jsonify(RouletteGame_Data)
 
 
 @app.route('/Balance')
